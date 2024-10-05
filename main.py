@@ -2,8 +2,10 @@ import pickle
 import tkinter as tk
 
 import pandas as pd
-import pycaret
 from tkinter import ttk
+
+from pycaret.classification import load_model
+
 from form import Form
 
 
@@ -21,11 +23,11 @@ class App:
                 except:
                     data[field] = [frame.entries[field].get()]
 
-        with open('GradientBoostingClassifier.pkl', 'rb') as file:
-            model = pickle.load(file)
+        model = load_model('GradientBoostingClassifier')
+
         processed_data = pd.DataFrame(data).drop(columns=['HadHeartAttack'])
         prediction = model.predict(processed_data)
-        print(prediction)
+        #print(prediction)
 
     def show_next_page(self):
         for frame in self.frames:
