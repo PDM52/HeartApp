@@ -23,11 +23,11 @@ class App:
                 except:
                     data[field] = [frame.entries[field].get()]
 
-        model = load_model('GradientBoostingClassifier')
-
-        processed_data = pd.DataFrame(data).drop(columns=['HadHeartAttack'])
+        model = load_model('model')
+        print(data)
+        processed_data = pd.DataFrame(data).drop(columns=['Disease'])
         prediction = model.predict(processed_data)
-        #print(prediction)
+        print(prediction)
 
     def show_next_page(self):
         for frame in self.frames:
